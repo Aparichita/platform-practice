@@ -66,3 +66,9 @@ Open `http://127.0.0.1:8000/health` to check the application.
 
 
 
+## GitOps with ArgoCD
+
+- Connected the GitHub repository to ArgoCD to manage Kubernetes manifests from Git.
+- Enabled automated synchronization and self-healing to reconcile cluster resources with the desired state in Git.
+- Verified GitOps by changing the deployment from 2 to 3 replicas through a Git commit and confirming that ArgoCD restored 3 replicas after a manual scaling change.
+
