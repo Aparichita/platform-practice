@@ -1,0 +1,25 @@
+name: build-and-test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t practice-api:ci .
+
+      - name: Start container and smoke-test /health
+        run: |
+          docker run -d -p 8000:8000 --name api practice-api:ci
+          for i in $(seq 1 15); do
+            curl -fs http://localhost:8000/health && exit 0
+            sleep 2
+          done
+          docker logs api
+          exit 1
