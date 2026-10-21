@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: practice-api
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: practice-api
